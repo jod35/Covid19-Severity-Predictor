@@ -20,6 +20,17 @@ model.compile(loss='binary_crossentropy',
 optimizer='adam', 
 metrics=['accuracy'])
 
+# save trained model
+
+checkpoint_path = "training_1/cp.ckpt"
+checkpoint_dir = os.path.dirname(checkpoint_path)
+
+# Create a callback that saves the model's weights
+cp_callback = ModelCheckpoint(filepath=checkpoint_path,
+                                                 save_weights_only=True,
+                                                 verbose=1)
+
+
 # fit the keras model on the 
 # dataset
 model.fit(X, y, epochs=5, batch_size=10)
